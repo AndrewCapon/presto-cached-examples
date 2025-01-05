@@ -148,14 +148,25 @@ int main()
 
       pixel.x += pixel.dx;
       pixel.y += pixel.dy;
-      if (pixel.x < 0)
+      if (pixel.x < 0) 
+      {
+        pixel.x = 0 - pixel.x;
         pixel.dx *= -1;
-      if (pixel.x >= graphics->bounds.w - PIX_WH)
+      } else if (pixel.x >= graphics->bounds.w - PIX_WH) 
+      {
+        pixel.x = graphics->bounds.w - (graphics->bounds.w-(graphics->bounds.w - PIX_WH));
         pixel.dx *= -1;
+      }
+
       if (pixel.y < 0)
+      {
+        pixel.y = 0 - pixel.y;
         pixel.dy *= -1;
-      if (pixel.y >= graphics->bounds.h - PIX_WH)
+      } else if (pixel.y >= graphics->bounds.h - PIX_WH)
+      {
+        pixel.y = graphics->bounds.h - (graphics->bounds.h-(graphics->bounds.h - PIX_WH));
         pixel.dy *= -1;
+      }
     }
     updateMs = elapsed.elapsedMs();
 
